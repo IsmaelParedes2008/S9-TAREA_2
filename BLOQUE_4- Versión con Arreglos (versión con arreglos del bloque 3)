@@ -1,0 +1,628 @@
+//PSEINT
+//1.-PROMEDIO DE CALIFICACIONES MAYORES A 70
+//Algoritmo PromedioNotasArreglosSeguro
+    // 1. Definición de Variables y Arreglo
+//    Definir N, i, ContadorNotasAprobadas Como Entero;
+//    Definir SumaNotasAprobadas, Promedio, NotaTemporal Como Real; 
+    
+//    SumaNotasAprobadas <- 0;
+//    ContadorNotasAprobadas <- 0;
+    
+    // --- LECTURA DEL TAMAÑO ---
+//    Escribir "Ingrese la cantidad de calificaciones (N):";
+//    Leer N;
+    
+    // Definimos el arreglo de calificaciones con el tamaño N
+//    Definir Calificaciones Como Real;
+//    Dimension Calificaciones[N];
+
+    // 2. Llenar el arreglo con la entrada del usuario
+//    Escribir "--- INGRESO DE CALIFICACIONES ---";
+    
+    // ⬇️ CORRECCIÓN CLAVE: INICIAR EL CICLO EN 1 ⬇️
+//    Para i <- 1 Hasta N Con Paso 1 Hacer 
+//        Escribir "Ingrese la calificacion [", i, "]:"; // Usamos 'i' para el mensaje
+        
+        // Leer en una variable temporal
+//        Leer NotaTemporal; 
+        
+        // Asignar el valor a la posición del arreglo
+//        Calificaciones[i] <- NotaTemporal; // PSeInt usará i=1, 2, 3... N
+//    Fin Para
+
+//    Escribir "--- PROCESO DE PROMEDIO ---";
+
+    // 3. Recorrer el arreglo y calcular el promedio (también debe ser de 1 a N)
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+        // Condicional: Solo procesar notas >= 70
+//        Si Calificaciones[i] >= 70 Entonces
+//            SumaNotasAprobadas <- SumaNotasAprobadas + Calificaciones[i];
+//            ContadorNotasAprobadas <- ContadorNotasAprobadas + 1;
+//        Fin Si
+//    Fin Para
+
+    // 4. Cálculo y Salida
+//    Si ContadorNotasAprobadas > 0 Entonces
+//        Promedio <- SumaNotasAprobadas / ContadorNotasAprobadas;
+        
+//        Escribir "Promedio de calificaciones >= 70: ", Promedio; 
+//    Sino
+//        Escribir "No se ingresaron calificaciones mayores o iguales a 70.";
+//    Fin Si
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//1.-PROMEDIO DE CALIFICACIONES MAYORES A 70
+function calcularPromedioNotasConArreglo() {
+    // 1. Solicitar el número N de calificaciones
+    const nInput = prompt("Ingrese la cantidad de calificaciones (N):");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+
+    // 2. Definir el arreglo de calificaciones
+    const calificaciones = []; 
+    
+    // 3. Variables para el cálculo
+    let sumaNotasAprobadas = 0;
+    let contadorNotasAprobadas = 0;
+
+    // 4. Ciclo for para leer y llenar el arreglo
+    for (let i = 0; i < N; i++) {
+        const notaInput = prompt(`Ingrese la calificación ${i + 1}:`);
+        const nota = parseFloat(notaInput);
+
+        // Validación y almacenamiento
+        if (isNaN(nota) || nota < 0 || nota > 100) {
+            alert("Calificación inválida. Intente de nuevo.");
+            i--; // Decrementa el índice para reintentar la entrada de esta nota
+            continue;
+        }
+        
+        calificaciones.push(nota); // Almacenar la calificación en el arreglo
+    }
+
+    // 5. Ciclo for para recorrer el arreglo y procesar
+    console.log(`Calificaciones ingresadas: [${calificaciones.join(', ')}]`);
+    
+    for (let i = 0; i < calificaciones.length; i++) {
+        const nota = calificaciones[i];
+        
+        // Condicional: Sumar y contar solo si la nota es >= 70
+        if (nota >= 70) {
+            sumaNotasAprobadas += nota;
+            contadorNotasAprobadas++;
+        }
+    }
+
+    // 6. Cálculo y Salida
+    if (contadorNotasAprobadas > 0) {
+        const promedio = sumaNotasAprobadas / contadorNotasAprobadas;
+        const resultado = promedio.toFixed(2);
+        
+        console.log(`Promedio de calificaciones ≥ 70: ${resultado}`); 
+        alert(`Promedio de calificaciones ≥ 70: ${resultado}`);
+        
+        return resultado;
+    } else {
+        const mensaje = "No se encontraron calificaciones mayores o iguales a 70.";
+        console.log(mensaje);
+        alert(mensaje);
+        return mensaje;
+    }
+}
+
+calcularPromedioNotasConArreglo();
+
+
+
+//PSEINT
+//2.-CONTAR NUMEROS NEGATIVOS EN UNA LISTA
+//Algoritmo ContarNegativosArreglo
+    // 1. Definición de Variables y Arreglo
+ //   Definir N, i, ContadorNegativos Como Entero;
+//    Definir NumeroTemporal Como Real; 
+    
+//    ContadorNegativos <- 0;
+    
+    // --- LECTURA DEL TAMAÑO ---
+//    Escribir "Ingrese la cantidad de números (N):";
+//    Leer N;
+    
+    // Definimos el arreglo de números con el tamaño N
+//    Definir Numeros Como Real;
+//    Dimension Numeros[N];
+
+    // 2. Llenar el arreglo con la entrada del usuario (Ciclo base 1)
+ //   Escribir "--- INGRESO DE NÚMEROS ---";
+ //   Para i <- 1 Hasta N Con Paso 1 Hacer 
+ //       Escribir "Ingrese el número [", i, "]:";
+        
+        // Leer en una variable temporal
+//        Leer NumeroTemporal; 
+        
+        // Asignar el valor a la posición del arreglo
+//        Numeros[i] <- NumeroTemporal;
+//    Fin Para
+
+ //   Escribir "--- PROCESO DE CONTEO ---";
+
+    // 3. Recorrer el arreglo y contar los negativos (Ciclo base 1)
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+        // Condicional: Solo contar si el número es negativo (< 0)
+ //       Si Numeros[i] < 0 Entonces
+ //           ContadorNegativos <- ContadorNegativos + 1;
+ //       Fin Si
+ //   Fin Para
+
+    // 4. Salida
+ //   Escribir "Cantidad de números negativos: ", ContadorNegativos;
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//2.-CONTAR NUMEROS NEGATIVOS EN UNA LISTA
+function contarNegativosConArreglo() {
+    // 1. Solicitar la cantidad de números (N)
+    const nInput = prompt("Ingrese la cantidad de números (N):");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+
+    // 2. Definir el arreglo de números y el contador
+    const numeros = []; 
+    let contadorNegativos = 0;
+
+    // 3. Ciclo for para leer y llenar el arreglo
+    for (let i = 0; i < N; i++) {
+        const numeroInput = prompt(`Ingrese el número ${i + 1}:`);
+        const numero = parseFloat(numeroInput);
+
+        // Validación y almacenamiento
+        if (isNaN(numero)) {
+            alert("Valor inválido. Intente de nuevo.");
+            i--; // Decrementa el índice para reintentar la entrada de este número
+            continue;
+        }
+        
+        numeros.push(numero); // Almacenar el número en el arreglo
+    }
+
+    // 4. Ciclo for para recorrer el arreglo y procesar
+    // (Podríamos haber contado en el ciclo anterior, pero lo separamos para seguir el proceso)
+    for (let i = 0; i < numeros.length; i++) {
+        const numero = numeros[i];
+        
+        // Condicional: Contar solo si el número es negativo (< 0)
+        if (numero < 0) {
+            contadorNegativos++;
+        }
+    }
+
+    // 5. Salida
+    const resultado = `
+Números ingresados: [${numeros.join(', ')}]
+Cantidad de números negativos: ${contadorNegativos}`;
+        
+    console.log(resultado);
+    alert(`Cantidad de números negativos: ${contadorNegativos}`);
+}
+
+contarNegativosConArreglo();
+
+
+
+//PSEINT
+//3.-PROMEDIO DE EDADES: MAYORES VS MENORES DE EDAD
+//Algoritmo PromedioEdadesArreglo
+    // 1. Definición e Inicialización de Variables
+//    Definir N, i, ContadorMayores, ContadorMenores Como Entero;
+//    Definir SumaMayores, SumaMenores, EdadTemporal, PromedioMayores, PromedioMenores Como Real; 
+    
+//    SumaMayores <- 0;
+//    ContadorMayores <- 0;
+//    SumaMenores <- 0;
+//    ContadorMenores <- 0;
+    
+    // --- LECTURA DEL TAMAÑO ---
+//    Escribir "Ingrese la cantidad de personas (N):";
+//    Leer N;
+    
+    // Definimos el arreglo de edades con el tamaño N
+//    Definir Edades Como Real;
+//    Dimension Edades[N];
+	
+    // 2. Llenar el arreglo con la entrada del usuario (Ciclo base 1)
+//    Escribir "--- INGRESO DE EDADES ---";
+//    Para i <- 1 Hasta N Con Paso 1 Hacer 
+//        Escribir "Ingrese la edad de la persona [", i, "]:";
+        
+//        Leer EdadTemporal; 
+        
+//        Edades[i] <- EdadTemporal;
+//   Fin Para
+	
+//    Escribir "--- PROCESO DE PROMEDIO ---";
+	
+    // 3. Recorrer el arreglo y clasificar (Ciclo base 1)
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+        // Clasificación y acumulación
+//        Si Edades[i] >= 18 Entonces
+//            SumaMayores <- SumaMayores + Edades[i];
+//            ContadorMayores <- ContadorMayores + 1;
+//        Sino
+//            SumaMenores <- SumaMenores + Edades[i];
+//            ContadorMenores <- ContadorMenores + 1;
+//        Fin Si
+//    Fin Para
+	
+    // 4. Cálculo y Salida
+    
+    // Cálculo de mayores
+//    Si ContadorMayores > 0 Entonces
+//        PromedioMayores <- SumaMayores / ContadorMayores;
+//    Sino
+//        PromedioMayores <- 0;
+//    Fin Si
+	
+    // Cálculo de menores
+//    Si ContadorMenores > 0 Entonces
+//        PromedioMenores <- SumaMenores / ContadorMenores;
+//    Sino
+//        PromedioMenores <- 0;
+//    Fin Si
+	
+    // 5. Salida (Usando la lógica de N/A si el contador es cero)
+//    Escribir "--- RESULTADOS ---";
+//    Si ContadorMayores > 0 Entonces
+//        Escribir "Promedio de mayores de edad: ", (PromedioMayores * 100) / 100;
+//    Sino
+//        Escribir "Promedio de mayores de edad: N/A";
+//    Fin Si
+	
+//    Si ContadorMenores > 0 Entonces
+//        Escribir "Promedio de menores de edad: ", (PromedioMenores * 100) / 100;
+//    Sino
+//        Escribir "Promedio de menores de edad: N/A";
+//    Fin Si
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//3.-PROMEDIO DE EDADES: MAYORES VS MENORES DE EDAD
+function calcularPromediosEdadesConArreglo() {
+    // 1. Solicitar la cantidad de personas (N)
+    const nInput = prompt("Ingrese la cantidad de personas (N):");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+
+    // 2. Definir el arreglo de edades
+    const edades = []; 
+    
+    // 3. Variables para el cálculo
+    let sumaMayores = 0;
+    let contadorMayores = 0;
+    let sumaMenores = 0;
+    let contadorMenores = 0;
+
+    // 4. Ciclo for para leer y llenar el arreglo
+    for (let i = 0; i < N; i++) {
+        const edadInput = prompt(`Ingrese la edad de la persona ${i + 1}:`);
+        const edad = parseInt(edadInput);
+
+        // Validación y almacenamiento
+        if (isNaN(edad) || edad < 0 || edad > 120) {
+            alert("Edad inválida. Intente de nuevo.");
+            i--; // Decrementa el índice para reintentar la entrada de esta edad
+            continue;
+        }
+        
+        edades.push(edad); // Almacenar la edad en el arreglo
+    }
+
+    // 5. Ciclo for para recorrer el arreglo y procesar
+    console.log(`Edades ingresadas: [${edades.join(', ')}]`);
+    
+    for (let i = 0; i < edades.length; i++) {
+        const edad = edades[i];
+        
+        // Clasificación y acumulación
+        if (edad >= 18) {
+            sumaMayores += edad;
+            contadorMayores++;
+        } else {
+            sumaMenores += edad;
+            contadorMenores++;
+        }
+    }
+
+    // 6. Cálculo y Salida
+    
+    // Promedio de mayores
+    let promedioMayores = (contadorMayores > 0) ? (sumaMayores / contadorMayores).toFixed(2) : "N/A";
+    
+    // Promedio de menores
+    let promedioMenores = (contadorMenores > 0) ? (sumaMenores / contadorMenores).toFixed(2) : "N/A";
+
+    const mensajeFinal = `
+Edades ingresadas: ${edades.join(', ')}
+Promedio de mayores de edad: ${promedioMayores}
+Promedio de menores de edad: ${promedioMenores}
+    `;
+    
+    console.log(mensajeFinal); 
+    alert(mensajeFinal);
+}
+
+calcularPromediosEdadesConArreglo();
+
+
+
+//PSEINT
+//4.-MOSTRAR TABLAS DE MULTIPLICAR DEL 1 AL 10 PARA CADA UNO
+//Algoritmo TablasDeVariosNumeros
+    // 1. Definición de Variables y Arreglo
+//    Definir N, i, j, NumeroTemporal, NumBase, Producto Como Entero;
+    
+    // --- LECTURA DEL TAMAÑO ---
+//    Escribir "Ingrese la cantidad de tablas a generar (N):";
+//    Leer N;
+    
+    // Definimos el arreglo de números con el tamaño N
+//    Definir NumerosBase Como Entero;
+//    Dimension NumerosBase[N];
+
+    // 2. Llenar el arreglo con la entrada del usuario (Ciclo base 1)
+//    Escribir "--- INGRESO DE NÚMEROS BASE ---";
+//    Para i <- 1 Hasta N Con Paso 1 Hacer 
+//        Escribir "Ingrese el número [", i, "]:";
+//        Leer NumeroTemporal; 
+//        NumerosBase[i] <- NumeroTemporal;
+//    Fin Para
+
+//    Escribir "--- GENERANDO TABLAS ---";
+
+    // 3. CICLO EXTERNO: Recorrer el arreglo (de i=1 hasta N)
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+//        NumBase <- NumerosBase[i]; // Obtener el número base actual
+        
+//        Escribir ""; // Salto de línea para separar tablas
+//        Escribir "Tabla del ", NumBase, ":";
+//        Escribir Sin Saltar NumBase, " x 1 = ", NumBase * 1; // Imprimir el primer término fuera del ciclo para el formato de salida
+
+        // 4. CICLO INTERNO: Multiplicar del 2 al 10
+//        Para j <- 2 Hasta 10 Con Paso 1 Hacer
+//            Producto <- NumBase * j;
+            
+            // Usamos ESCRIBIR SIN SALTAR para poner la salida en una línea larga (como en la salida esperada)
+            // NOTA: Para replicar el formato "3, 6, 9..." la lógica de la salida debe ser diferente
+            // Por simplicidad de consola, PSeInt usa un formato más estándar. 
+            // Usaremos el formato "x 1 = producto" para mayor claridad.
+//            Escribir NumBase, " x ", j, " = ", Producto;
+//        Fin Para
+//    Fin Para
+
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//4.-MOSTRAR TABLAS DE MULTIPLICAR DEL 1 AL 10 PARA CADA UNO
+function mostrarTablasDeVariosNumeros() {
+    // 1. Solicitar la cantidad de números (N)
+    const nInput = prompt("¿Cuántas tablas de multiplicar va a generar (N)?");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+
+    // 2. Definir el arreglo de números
+    const numeros = []; 
+    
+    // 3. Ciclo for para leer y llenar el arreglo
+    for (let i = 0; i < N; i++) {
+        const numInput = prompt(`Ingrese el número base para la tabla ${i + 1}:`);
+        const numero = parseInt(numInput);
+
+        // Validación y almacenamiento
+        if (isNaN(numero)) {
+            alert("Valor inválido. Intente de nuevo.");
+            i--; // Reintentar la entrada
+            continue;
+        }
+        
+        numeros.push(numero); 
+    }
+
+    let resultadoFinal = "--- TABLAS DE MULTIPLICAR ---\n";
+
+    // 4. CICLO EXTERNO: Recorrer cada número del arreglo
+    for (const numBase of numeros) {
+        let tablaLinea = [];
+        
+        console.log(`\nTabla del ${numBase}:`);
+        resultadoFinal += `\nTabla del ${numBase}:\n`;
+
+        // 5. CICLO INTERNO: Multiplicar del 1 al 10
+        for (let multiplicador = 1; multiplicador <= 10; multiplicador++) {
+            const producto = numBase * multiplicador;
+            tablaLinea.push(producto);
+        }
+        
+        // 6. Salida de la tabla completa
+        const tablaStr = tablaLinea.join(', ');
+        console.log(tablaStr);
+        resultadoFinal += tablaStr + '\n';
+    }
+
+    alert(resultadoFinal);
+}
+
+mostrarTablasDeVariosNumeros();
+
+
+
+//PSEINT
+//5.-PROMEDIO DE NÚMEROS PARES E IMPARES
+//Algoritmo PromedioParesImparesArreglo
+    // 1. Definición e Inicialización de Variables
+//    Definir N, i, ContadorPares, ContadorImpares Como Entero;
+//    Definir SumaPares, SumaImpares, NumeroTemporal, PromedioPares, PromedioImpares Como Real; 
+    
+//    SumaPares <- 0;
+//    ContadorPares <- 0;
+ //   SumaImpares <- 0;
+//    ContadorImpares <- 0;
+    
+    // --- LECTURA DEL TAMAÑO ---
+//    Escribir "Ingrese la cantidad de números (N):";
+//    Leer N;
+    
+    // Definimos el arreglo de números con el tamaño N
+//    Definir Numeros Como Real;
+//    Dimension Numeros[N];
+
+    // 2. Llenar el arreglo con la entrada del usuario (Ciclo base 1)
+//    Escribir "--- INGRESO DE NÚMEROS ---";
+//    Para i <- 1 Hasta N Con Paso 1 Hacer 
+//        Escribir "Ingrese el número [", i, "]:";
+        
+//        Leer NumeroTemporal; 
+        
+//        Numeros[i] <- NumeroTemporal;
+//    Fin Para
+
+//    Escribir "--- PROCESO DE PROMEDIO ---";
+
+    // 3. Recorrer el arreglo y clasificar (Ciclo base 1)
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+        // Clasificación: verificamos si es par (el operador MOD funciona bien con enteros)
+//        Si Numeros[i] MOD 2 = 0 Entonces
+            // Par
+//            SumaPares <- SumaPares + Numeros[i];
+//            ContadorPares <- ContadorPares + 1;
+//        Sino
+            // Impar
+//            SumaImpares <- SumaImpares + Numeros[i];
+//            ContadorImpares <- ContadorImpares + 1;
+//        Fin Si
+//    Fin Para
+
+    // 4. Cálculo y Salida
+    
+    // Cálculo de pares
+//    Si ContadorPares > 0 Entonces
+//        PromedioPares <- SumaPares / ContadorPares;
+//    Sino
+//        PromedioPares <- 0;
+//    Fin Si
+
+    // Cálculo de impares
+//    Si ContadorImpares > 0 Entonces
+//        PromedioImpares <- SumaImpares / ContadorImpares;
+//    Sino
+//        PromedioImpares <- 0;
+//    Fin Si
+
+    // 5. Salida (Formateando los decimales)
+//    Escribir "--- RESULTADOS ---";
+//    Si ContadorPares > 0 Entonces
+//        Escribir "Promedio de pares: ", Redondear(PromedioPares * 100) / 100;
+//    Sino
+//        Escribir "Promedio de pares: N/A";
+//    Fin Si
+
+//    Si ContadorImpares > 0 Entonces
+//        Escribir "Promedio de impares: ", Redondear(PromedioImpares * 100) / 100;
+//    Sino
+//        Escribir "Promedio de impares: N/A";
+//    Fin Si
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//5.-PROMEDIO DE NÚMEROS PARES E IMPARES
+function calcularPromedioParesImparesConArreglo() {
+    // 1. Solicitar la cantidad de números (N)
+    const nInput = prompt("Ingrese la cantidad de números (N):");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+
+    // 2. Definir el arreglo de números y variables de cálculo
+    const numeros = []; 
+    let sumaPares = 0;
+    let contadorPares = 0;
+    let sumaImpares = 0;
+    let contadorImpares = 0;
+
+    // 3. Ciclo for para leer y llenar el arreglo
+    for (let i = 0; i < N; i++) {
+        const numeroInput = prompt(`Ingrese el número ${i + 1}:`);
+        const numero = parseFloat(numeroInput);
+
+        // Validación y almacenamiento
+        if (isNaN(numero)) {
+            alert("Valor inválido. Intente de nuevo.");
+            i--; // Decrementa el índice para reintentar la entrada de este número
+            continue;
+        }
+        
+        numeros.push(numero); // Almacenar el número en el arreglo
+    }
+
+    // 4. Ciclo for para recorrer el arreglo y clasificar
+    console.log(`Números ingresados: [${numeros.join(', ')}]`);
+    
+    for (let i = 0; i < numeros.length; i++) {
+        const numero = numeros[i];
+        
+        // Clasificación: Solo si es entero, verificamos par/impar
+        if (Number.isInteger(numero)) {
+            if (numero % 2 === 0) {
+                // Par
+                sumaPares += numero;
+                contadorPares++;
+            } else {
+                // Impar
+                sumaImpares += numero;
+                contadorImpares++;
+            }
+        }
+    }
+
+    // 5. Cálculo y Salida
+    
+    // Promedio de pares
+    let promedioPares = (contadorPares > 0) ? (sumaPares / contadorPares).toFixed(2) : "N/A";
+    
+    // Promedio de impares
+    let promedioImpares = (contadorImpares > 0) ? (sumaImpares / contadorImpares).toFixed(2) : "N/A";
+
+    const mensajeFinal = `
+Números ingresados: ${numeros.join(', ')}
+Promedio de pares: ${promedioPares}
+Promedio de impares: ${promedioImpares}
+    `;
+    
+    console.log("--- RESULTADOS ---");
+    console.log(mensajeFinal); 
+    alert(mensajeFinal);
+}
+
+calcularPromedioParesImparesConArreglo();
