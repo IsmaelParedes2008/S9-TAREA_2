@@ -1,0 +1,512 @@
+//PSEINT
+//1.-PROMEDIO DE CALIFICACIONES MAYORES A 70
+//Algoritmo PromedioNotasAprobadas
+    // 1. Definición e Inicialización de Variables
+//    Definir N, Nota, i, ContadorNotasAprobadas Como Entero;
+//    Definir SumaNotasAprobadas, Promedio Como Real;
+	
+//    SumaNotasAprobadas <- 0;
+//    ContadorNotasAprobadas <- 0;
+	
+    // 2. Entrada de la cantidad de calificaciones
+//    Escribir "Ingrese número de calificaciones (N): ";
+//    Leer N;
+	
+    // 3. Ciclo para leer y procesar cada nota
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+//        Escribir "Ingrese la calificación ", i, ": ";
+//        Leer Nota;
+		
+        // 4. Estructura Condicional: solo se consideran notas >= 70
+//        Si Nota >= 70 Entonces
+//            SumaNotasAprobadas <- SumaNotasAprobadas + Nota;
+//            ContadorNotasAprobadas <- ContadorNotasAprobadas + 1;
+//        Fin Si
+//    Fin Para
+	
+    // 5. Cálculo y Salida del Promedio
+//    Si ContadorNotasAprobadas > 0 Entonces
+//        Promedio <- SumaNotasAprobadas / ContadorNotasAprobadas;
+        // Se formatea a dos decimales
+//        Escribir "Promedio de notas >= 70: ",(Promedio * 100) / 100;
+//    SiNo
+//        Escribir "No se ingresaron calificaciones mayores o iguales a 70.";
+//    Fin Si
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//1.-PROMEDIO DE CALIFICACIONES MAYORES A 70
+function iniciarCalculoDePromedio() {
+    let sumaNotasAprobadas = 0;
+    let contadorNotasAprobadas = 0;
+    
+    // 1. Pedir la cantidad total de calificaciones (N) usando prompt
+    // Nota: prompt devuelve un string. Lo convertimos a número con parseInt().
+    let respuestaN = prompt("Ingrese número de calificaciones (N):");
+    const N = parseInt(respuestaN);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Error: Por favor, ingrese un número válido mayor a cero.");
+        return;
+    }
+
+    // 2. Ciclo para solicitar cada nota
+    for (let i = 1; i <= N; i++) {
+        let respuestaNota = prompt(`Ingrese la calificación ${i}:`);
+        const nota = parseFloat(respuestaNota);
+
+        // Validación
+        if (isNaN(nota) || nota < 0) { 
+            alert(`Calificación inválida ingresada. Saltando nota ${i}.`);
+            // Decrementamos el índice para volver a pedir la misma nota si quieres validación estricta.
+            // Por simplicidad, aquí la ignoramos y pasamos a la siguiente.
+            continue; 
+        }
+
+        // Lógica principal: Acumular si la nota es >= 70
+        if (nota >= 70) {
+            sumaNotasAprobadas += nota;
+            contadorNotasAprobadas++;
+        }
+    }
+
+    // 3. Mostrar el Resultado
+    let mensaje = "";
+    if (contadorNotasAprobadas > 0) {
+        const promedio = sumaNotasAprobadas / contadorNotasAprobadas;
+        mensaje = `Promedio de notas ≥ 70: ${promedio.toFixed(2)}`;
+    } else {
+        mensaje = "No se ingresaron calificaciones mayores o iguales a 70.";
+    }
+
+    // Usamos alert() para mostrar el resultado en una ventana emergente del navegador
+    alert(mensaje);
+    console.log(mensaje); // También lo mostramos en la consola del navegador
+}
+
+// Iniciar la ejecución
+iniciarCalculoDePromedio();
+
+
+
+//PSEINT
+//2.-CONTAR CUANTOS NUMEROS NEGATIVOS SE INGRESAN
+//Algoritmo ContarNegativos
+    // 1. Definición e Inicialización de Variables
+//    Definir N, i, Numero, ContadorNegativos Como Entero;
+	
+//    ContadorNegativos <- 0;
+	
+    // 2. Entrada: Cantidad total de números
+//    Escribir "Ingrese cuántos números desea ingresar (N): ";
+//    Leer N;
+	
+    // 3. Ciclo para solicitar y procesar cada número
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+//        Escribir "Ingrese el número ", i, ": ";
+//        Leer Numero;
+		
+        // 4. Condicional: Se cuenta si el número es negativo (< 0)
+//        Si Numero < 0 Entonces
+//            ContadorNegativos <- ContadorNegativos + 1;
+//       Fin Si
+//    Fin Para
+	
+    // 5. Salida del resultado
+//    Escribir "Cantidad de negativos: ", ContadorNegativos;
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//2.-CONTAR CUNATOS NUMEROS NEGATIVOS SE INGRESAN
+function contarNumerosNegativos() {
+    let contadorNegativos = 0;
+    
+    // 1. Pedir la cantidad total de números (N)
+    let respuestaN = prompt("Ingrese cuántos números desea ingresar:");
+    const N = parseInt(respuestaN);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Error: Ingrese una cantidad válida mayor a cero.");
+        return;
+    }
+
+    // 2. Ciclo para solicitar cada número
+    for (let i = 1; i <= N; i++) {
+        let respuestaNumero = prompt(`Ingrese el número ${i}:`);
+        // Convertimos la respuesta a un número
+        const numero = parseFloat(respuestaNumero);
+
+        // Validación simple para asegurar que es un número
+        if (isNaN(numero)) { 
+            alert(`Valor inválido ingresado. Saltando número ${i}.`);
+            continue; 
+        }
+
+        // 3. Lógica principal: Contar si es negativo
+        if (numero < 0) {
+            contadorNegativos++;
+        }
+    }
+
+    // 4. Mostrar el Resultado
+    const mensaje = `Cantidad de negativos: ${contadorNegativos}`;
+    
+    // Usamos alert() y console.log() para mostrar el resultado
+    alert(mensaje);
+    console.log(mensaje); 
+}
+
+// Iniciar la ejecución
+contarNumerosNegativos();
+
+
+
+//PSEINT
+//3.-PROMEDIO DE EDADES: MAYORES VS MENORES DE EDAD
+//Algoritmo PromedioEdadesMayoresYMenores
+    // 1. Definición e Inicialización de Variables
+//    Definir N, i, Edad Como Entero;
+//    Definir SumaMayores, ContadorMayores, SumaMenores, ContadorMenores Como Real;
+//    Definir PromedioMayores, PromedioMenores Como Real;
+
+//    SumaMayores <- 0;
+//    ContadorMayores <- 0;
+//    SumaMenores <- 0;
+//    ContadorMenores <- 0;
+
+    // 2. Entrada: Cantidad total de personas
+//    Escribir "Ingrese número de personas (N): ";
+//    Leer N;
+
+    // 3. Ciclo Para para leer y procesar cada edad
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+ //       Escribir "Ingrese la edad de la persona ", i, ": ";
+//        Leer Edad;
+
+        // 4. Proceso de clasificación y acumulación
+//        Si Edad >= 18 Entonces
+//            // Es mayor de edad
+//            SumaMayores <- SumaMayores + Edad;
+//            ContadorMayores <- ContadorMayores + 1;
+//        Sino
+            // Es menor de edad
+//            SumaMenores <- SumaMenores + Edad;
+//            ContadorMenores <- ContadorMenores + 1;
+//        Fin Si
+//    Fin Para
+
+    // 5. Cálculo y Salida de los promedios
+
+    // Cálculo del promedio de mayores
+//    Si ContadorMayores > 0 Entonces
+//        PromedioMayores <- SumaMayores / ContadorMayores;
+//    Sino
+//        PromedioMayores <- 0; // Usamos 0 o un valor especial
+//    Fin Si
+
+    // Cálculo del promedio de menores
+//    Si ContadorMenores > 0 Entonces
+//        PromedioMenores <- SumaMenores / ContadorMenores;
+//    Sino
+ //       PromedioMenores <- 0; // Usamos 0 o un valor especial
+//    Fin Si
+
+    // 6. Salida
+//    Escribir "--- RESULTADOS ---";
+//    Si ContadorMayores > 0 Entonces
+//        Escribir "Promedio de mayores de edad: ", Redondear(PromedioMayores * 100) / 100;
+//    Sino
+//        Escribir "Promedio de mayores de edad: N/A (No hay datos)";
+//    Fin Si
+
+//    Si ContadorMenores > 0 Entonces
+//        Escribir "Promedio de menores de edad: ", Redondear(PromedioMenores * 100) / 100;
+//    Sino
+//        Escribir "Promedio de menores de edad: N/A (No hay datos)";
+//    Fin Si
+
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//3.-PROMEDIO DE EDADES: MAYORES VS MENORES DE EDAD
+function calcularPromediosEdades() {
+    // 1. Inicialización de contadores y acumuladores
+    let sumaMayores = 0;
+    let contadorMayores = 0;
+    let sumaMenores = 0;
+    let contadorMenores = 0;
+
+    // 2. Solicitar el número de personas (N)
+    const nInput = prompt("Ingrese número de personas (N):");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+
+    let edadesIngresadas = [];
+
+    // 3. Ciclo for para leer las N edades una por una
+    for (let i = 1; i <= N; i++) {
+        const edadInput = prompt(`Ingrese la edad de la persona ${i}:`);
+        const edad = parseInt(edadInput);
+
+        // Validación
+        if (isNaN(edad) || edad < 0 || edad > 120) {
+            alert(`Edad inválida ingresada. Por favor, reintente la edad ${i}.`);
+            i--; // Decrementa el contador para volver a pedir la misma edad
+            continue;
+        }
+        
+        edadesIngresadas.push(edad); // Guardar para la salida
+
+        // 4. Proceso de clasificación y acumulación
+        if (edad >= 18) {
+            // Es mayor de edad
+            sumaMayores += edad;
+            contadorMayores++;
+        } else {
+            // Es menor de edad
+            sumaMenores += edad;
+            contadorMenores++;
+        }
+    }
+
+    // 5. Cálculo de los promedios
+    
+    // Promedio de mayores
+    let promedioMayores = 0;
+    if (contadorMayores > 0) {
+        promedioMayores = sumaMayores / contadorMayores;
+    }
+    
+    // Promedio de menores
+    let promedioMenores = 0;
+    if (contadorMenores > 0) {
+        promedioMenores = sumaMenores / contadorMenores;
+    }
+
+    // 6. Salida
+    const resultado = `
+Edades ingresadas: ${edadesIngresadas.join(', ')}
+Promedio de mayores de edad: ${promedioMayores > 0 ? promedioMayores.toFixed(2) : 'N/A'}
+Promedio de menores de edad: ${promedioMenores > 0 ? promedioMenores.toFixed(2) : 'N/A'}
+    `;
+
+    console.log("--- RESULTADOS ---");
+    console.log(resultado);
+    alert(resultado);
+}
+
+calcularPromediosEdades();
+
+
+
+//PSEINT
+//4.-MOSTRAR LA TABLA DE MULTIPLICAR DE UN NUMERO
+//Algoritmo TablaDeMultiplicar
+    // 1. Definición de Variables
+//    Definir Numero, Multiplicador, Producto Como Entero;
+	
+    // 2. Entrada: Número para la tabla
+//    Escribir "Ingrese un número para la tabla de multiplicar: ";
+//    Leer Numero;
+	
+//    Escribir "Tabla del ", Numero, ":";
+	
+    // 3. Ciclo Para del 1 al 10
+//    Para Multiplicador <- 1 Hasta 10 Con Paso 1 Hacer
+        // Calcular el producto
+//        Producto <- Numero * Multiplicador;
+		
+        // 4. Salida en cada iteración: "Numero x Multiplicador = Producto"
+//        Escribir Numero, " x ", Multiplicador, " = ", Producto;
+//    Fin Para
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//MOSTRAR LA TABLA DE MULTIPLICAR DE UN NUMERO
+function mostrarTablaDeMultiplicar() {
+    // 1. Entrada: Número para la tabla
+    const numeroInput = prompt("Ingrese un número para la tabla de multiplicar:");
+    const Numero = parseInt(numeroInput);
+
+    if (isNaN(Numero)) {
+        alert("Entrada inválida. Por favor, ingrese un número.");
+        return;
+    }
+
+    let resultadoCompleto = `Tabla del ${Numero}:\n`;
+
+    console.log(`Tabla del ${Numero}:`);
+
+    // 2. Ciclo for del 1 al 10
+    for (let Multiplicador = 1; Multiplicador <= 10; Multiplicador++) {
+        // Calcular el producto
+        const Producto = Numero * Multiplicador;
+
+        // 3. Formatear la línea de salida
+        const linea = `${Numero} x ${Multiplicador} = ${Producto}`;
+        
+        // 4. Acumular y mostrar en consola
+        resultadoCompleto += linea + '\n';
+        console.log(linea);
+    }
+    
+    // 5. Salida final
+    alert(resultadoCompleto);
+}
+
+mostrarTablaDeMultiplicar();
+
+
+//PSEINT
+//5.-PROMEDIO DE NUMEROS PARES E IMPARES
+//Algoritmo PromedioParesImpares
+    // 1. Definición e Inicialización de Variables
+//    Definir N, i, Numero Como Entero;
+//    Definir SumaPares, ContadorPares, SumaImpares, ContadorImpares Como Real;
+//    Definir PromedioPares, PromedioImpares Como Real;
+
+//    SumaPares <- 0;
+//    ContadorPares <- 0;
+//    SumaImpares <- 0;
+//    ContadorImpares <- 0;
+
+    // 2. Entrada: Cantidad total de números
+//    Escribir "Ingrese cantidad de números (N): ";
+//    Leer N;
+
+    // 3. Ciclo Para para leer y procesar cada número
+//    Para i <- 1 Hasta N Con Paso 1 Hacer
+//        Escribir "Ingrese el número ", i, ": ";
+//        Leer Numero;
+
+        // 4. Proceso de clasificación (Usando el operador módulo)
+//        Si Numero MOD 2 = 0 Entonces
+            // Es par
+//            SumaPares <- SumaPares + Numero;
+//            ContadorPares <- ContadorPares + 1;
+//        Sino
+            // Es impar
+//            SumaImpares <- SumaImpares + Numero;
+//            ContadorImpares <- ContadorImpares + 1;
+//        Fin Si
+//    Fin Para
+
+    // 5. Cálculo de los promedios
+
+    // Promedio de pares
+//    Si ContadorPares > 0 Entonces
+//        PromedioPares <- SumaPares / ContadorPares;
+//    Sino
+//        PromedioPares <- 0;
+//    Fin Si
+
+    // Promedio de impares
+//    Si ContadorImpares > 0 Entonces
+//        PromedioImpares <- SumaImpares / ContadorImpares;
+//    Sino
+//        PromedioImpares <- 0;
+//    Fin Si
+
+    // 6. Salida (Formateando a dos decimales)
+//    Escribir "--- RESULTADOS ---";
+//    Si ContadorPares > 0 Entonces
+//        Escribir "Promedio de pares: ", Redondear(PromedioPares * 100) / 100;
+//    Sino
+//        Escribir "Promedio de pares: N/A (No se ingresaron números pares)";
+//    Fin Si
+
+//    Si ContadorImpares > 0 Entonces
+//        Escribir "Promedio de impares: ", Redondear(PromedioImpares * 100) / 100;
+//    Sino
+//        Escribir "Promedio de impares: N/A (No se ingresaron números impares)";
+//    Fin Si
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//5.-PROMEDIO DE NUMEROS PARES E IMPARES
+function calcularPromedioParesImpares() {
+    // 1. Inicialización de contadores y acumuladores
+    let sumaPares = 0;
+    let contadorPares = 0;
+    let sumaImpares = 0;
+    let contadorImpares = 0;
+
+    // 2. Solicitar la cantidad de números (N)
+    const nInput = prompt("Ingrese cantidad de números (N):");
+    const N = parseInt(nInput);
+
+    if (isNaN(N) || N <= 0) {
+        alert("Entrada inválida. Debe ingresar un número mayor a cero.");
+        return;
+    }
+    
+    // Para replicar la salida esperada
+    let valoresIngresados = [];
+
+    // 3. Ciclo for para leer los N números uno por uno
+    for (let i = 1; i <= N; i++) {
+        const numeroInput = prompt(`Ingrese el número ${i}:`);
+        const Numero = parseFloat(numeroInput);
+
+        // Validación
+        if (isNaN(Numero)) {
+            alert(`Valor inválido ingresado. Por favor, reintente el número ${i}.`);
+            i--; // Regresar para reintentar el mismo número
+            continue;
+        }
+        
+        valoresIngresados.push(Numero);
+
+        // 4. Proceso de clasificación (Usando el operador módulo %)
+        // Se usa Number.isInteger para verificar que la operación de par/impar sea válida
+        if (Number.isInteger(Numero) && Numero % 2 === 0) {
+            // Es par (o cero)
+            sumaPares += Numero;
+            contadorPares++;
+        } else if (Number.isInteger(Numero) && Numero % 2 !== 0) {
+            // Es impar
+            sumaImpares += Numero;
+            contadorImpares++;
+        }
+        // Nota: Si se ingresa un número decimal, no se cuenta en ninguna categoría.
+    }
+
+    // 5. Cálculo y Salida
+    
+    // Promedio de pares
+    let promedioPares = 0;
+    if (contadorPares > 0) {
+        promedioPares = sumaPares / contadorPares;
+    }
+    
+    // Promedio de impares
+    let promedioImpares = 0;
+    if (contadorImpares > 0) {
+        promedioImpares = sumaImpares / contadorImpares;
+    }
+
+    // 6. Generar el mensaje de salida
+    let resultadoPares = (contadorPares > 0) ? promedioPares.toFixed(2) : "N/A";
+    let resultadoImpares = (contadorImpares > 0) ? promedioImpares.toFixed(2) : "N/A";
+
+    const mensajeFinal = `
+Valores ingresados: ${valoresIngresados.join(', ')}
+Promedio de pares: ${resultadoPares}
+Promedio de impares: ${resultadoImpares}
+    `;
+
+    console.log("--- RESULTADOS ---");
+    console.log(mensajeFinal);
+    alert(mensajeFinal);
+}
+
+calcularPromedioParesImpares();
