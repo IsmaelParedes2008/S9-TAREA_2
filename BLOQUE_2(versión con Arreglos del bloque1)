@@ -1,0 +1,395 @@
+//PSEINT
+//1.-CONTAR CARACTERES DE VARIAS FRASES PUBLICITARIAS
+//Algoritmo ContarCaracteresNVeces
+//    Definir n Como Entero
+//    Definir i Como Entero
+//    Definir frase Como Caracter
+    
+    // Prompt para definir N (número de frases)
+//    Escribir "¿Cuántas frases publicitarias va a ingresar (N)?"
+//    Leer n
+    
+//    Si n > 0 Entonces
+//        Escribir "--- Resultados ---"
+        
+        // Bucle para ingresar N frases y mostrar su longitud
+//        Para i <- 1 Hasta n Con Paso 1 Hacer
+//            Escribir "Ingrese la frase #", i, ":"
+//            Leer frase
+            
+            // LÍNEA DE SALIDA CORREGIDA para imprimir comillas dobles (usa """...""")
+//            Escribir ", frase, ", " -> ", Longitud(frase), " caracteres"
+//        FinPara
+//    SiNo
+//       Escribir "Debe ingresar un número mayor a cero."
+//    FinSi
+//	FinAlgoritmo
+
+//JAVASCRIPT
+//1.-CONTAR CARACTERES DE VARIAS FRASES PUBLICITARIAS
+function contarCaracteresSinCiclo() {
+    const input = prompt("Ingrese todas las frases separadas por '|' o comas o saltos de línea:");
+    if (input === null || input.trim() === "") {
+        alert("No ingresó ninguna frase.");
+        return;
+    }
+
+    // Separar por salto de línea, '|' o coma, limpiar y filtrar vacíos
+    const frases = input.split(/\r?\n|\||,/).map(s => s.trim()).filter(Boolean);
+    if (frases.length === 0) {
+        alert("No se detectaron frases válidas.");
+        return;
+    }
+
+    // Calcular resultados usando map
+    const resultados = frases.map(f => `"${f}" -> ${f.length} caracteres`);
+
+    // Mostrar resultados
+    console.log("--- Resultados ---\n" + resultados.join("\n"));
+    alert("Resultados:\n" + resultados.join("\n"));
+}
+
+contarCaracteresSinCiclo();
+
+
+
+//PSEINT
+//2.-CONTAR APARICIONES DE UNA VOCAL EN CADA TITULO
+//Algoritmo ContarCaracteresNVeces
+//    Definir n Como Entero
+//    Definir i Como Entero
+//    Definir frase Como Caracter
+    
+    // Prompt para definir N (número de frases)
+//    Escribir "¿Cuántas frases publicitarias va a ingresar?"
+//    Leer n
+    
+//    Si n > 0 Entonces
+//        Escribir "--- Resultados ---"
+        
+        // Bucle para ingresar N frases y mostrar su longitud
+//        Para i <- 1 Hasta n Con Paso 1 Hacer
+//            Escribir "Ingrese la frase #", i, ":"
+//            Leer frase
+            
+            // LÍNEA DE SALIDA CORREGIDA para imprimir comillas dobles (usa """...""")
+//            Escribir ", frase, ", " -> ", Longitud(frase), " caracteres"
+ //       FinPara
+//    SiNo
+//        Escribir "Debe ingresar un número mayor a cero."
+//    FinSi
+//	FinAlgoritmo
+
+
+//JAVASCRIPT
+//2.-CONTAR APARICIONES DE UNA VOCAL EN CADA TITULO
+function contarVocalEnArregloSinCiclo() {
+    // 1. Solicitar la vocal
+    const vocalIngresada = prompt("Ingrese la vocal a contar (a, e, i, o, u):");
+    if (vocalIngresada === null) return;
+    const vocal = vocalIngresada.trim().toLowerCase();
+    if (vocal.length !== 1 || !"aeiou".includes(vocal)) {
+        alert("Vocal inválida. Use una sola vocal: a, e, i, o o u.");
+        return;
+    }
+
+    // 2. Solicitar todas las títulos en un solo prompt (separador: |, coma o salto de línea)
+    const input = prompt("Ingrese todos los títulos separados por '|' o comas o saltos de línea:");
+    if (input === null || input.trim() === "") {
+        alert("No ingresó ningún título.");
+        return;
+    }
+
+    // 3. Dividir en arreglo, limpiar y filtrar vacíos (sin usar for/while)
+    const titulos = input.split(/\r?\n|\||,/).map(s => s.trim()).filter(Boolean);
+    if (titulos.length === 0) {
+        alert("No se detectaron títulos válidos.");
+        return;
+    }
+
+    // 4. Contar apariciones de la vocal en cada título usando map (sin ciclos explícitos)
+    const regex = new RegExp(vocal, 'g');
+    const resultados = titulos.map(t => {
+        const coincidencias = t.toLowerCase().match(regex);
+        const contador = coincidencias ? coincidencias.length : 0;
+        return `"${t}" -> ${contador} veces la '${vocalIngresada}'`;
+    });
+
+    // 5. Mostrar resultados
+    console.log("--- Resultados ---\n" + resultados.join("\n"));
+    alert("Resultados:\n" + resultados.join("\n"));
+}
+
+contarVocalEnArregloSinCiclo();
+
+
+
+//PSEINT
+//3.-INVERTIR LOS NOMBRES DE VARIOS PRODUCTOS
+
+
+
+//JAVASCRIPT
+//3.-INVERTYIR LOS NOMBRES DE VARIOS PRODUCTOS
+function invertirProductosSinCiclo() {
+    const input = prompt("Ingrese los nombres de los productos separados por '|' o comas o saltos de línea:");
+    if (input === null || input.trim() === "") {
+        alert("No ingresó ningún producto.");
+        return;
+    }
+
+    // Separar, limpiar y filtrar (sin for/while)
+    const productos = input.split(/\r?\n|\||,/).map(s => s.trim()).filter(Boolean);
+    if (productos.length === 0) {
+        alert("No se detectaron productos válidos.");
+        return;
+    }
+
+    // Invertir cada producto usando map y métodos de arreglo (sin bucles explícitos)
+    const resultados = productos.map(p => {
+        const invertido = p.split('').reverse().join('');
+        return `"${p}" -> "${invertido}"`;
+    });
+
+    console.log("--- Resultados ---\n" + resultados.join("\n"));
+    alert("Resultados:\n" + resultados.join("\n"));
+}
+
+invertirProductosSinCiclo();
+
+
+
+//PSEINT
+//4.-COMPARAR LONGITUDES DE NOMBRES DE CIUDADES
+//Algoritmo CiudadMasLargaManual
+//    Definir n, i, j, longitudActual, longitudMaxima Como Entero
+//    Definir ciudades, ciudadActual, ciudadMasLarga Como Caracter
+    
+//    longitudMaxima <- 0
+//    ciudadMasLarga <- ""
+    
+    // 1. Solicitar el número N de ciudades
+//    Escribir ">> Ingrese el número de ciudades (N):"
+//    Leer n
+    
+//    Si n > 0 Entonces
+        // 2. Dimensionar el arreglo
+//        Dimension ciudades[n]
+        
+//        Escribir "--- INGRESO DE CIUDADES ---"
+        
+        // 3. Bucle para ingresar N ciudades
+//        Para i <- 1 Hasta n Con Paso 1 Hacer
+//            Escribir "Ingrese la ciudad #", i, ":"
+//            Leer ciudadActual // Leemos en una variable temporal
+//            ciudades[i] <- ciudadActual // Guardamos en el arreglo
+            
+            // CONTADOR DE LONGITUD MANUAL (REEMPLAZA A LONGITUD())
+//            longitudActual <- 0
+//            j <- 1
+//            Mientras SubCadena(ciudadActual, j, j) <> "" Hacer
+//                longitudActual <- longitudActual + 1
+//                j <- j + 1
+//            FinMientras
+            
+            // Encontrar la más larga
+//            Si longitudActual > longitudMaxima Entonces
+//                longitudMaxima <- longitudActual
+//                ciudadMasLarga <- ciudadActual
+//            FinSi
+//        FinPara
+        
+        // --- Resultados Finales ---
+//        Escribir ""
+//        Escribir "RESULTADO:"
+//        Escribir "La ciudad con mas letras es: ", ciudadMasLarga
+//        Escribir "Tiene ", longitudMaxima, " letras."
+//    SiNo
+//        Escribir "Debe ingresar un número mayor a cero."
+//    FinSi
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//4.-COMPARAR LONGITUDES DE NOMBRES DE CIUDADES
+// ...existing code...
+// Reemplaza la función ciudadMasLargaConSeleccion por esta versión sin bucles explícitos
+function ciudadMasLargaSinCiclo() {
+    const input = prompt("Ingrese los nombres de las ciudades separados por '|' o comas o saltos de línea:");
+    if (input === null || input.trim() === "") {
+        alert("No ingresó ninguna ciudad.");
+        return;
+    }
+
+    const ciudades = input.split(/\r?\n|\||,/).map(s => s.trim()).filter(Boolean);
+    if (ciudades.length === 0) {
+        alert("No se detectaron ciudades válidas.");
+        return;
+    }
+
+    // Encontrar la ciudad más larga (si hay empate, devuelve la primera)
+    const ciudadMasLarga = ciudades.reduce((max, cur) => cur.length > max.length ? cur : max, ciudades[0]);
+    const longitudMaxima = ciudadMasLarga.length;
+
+    // Mostrar listado con índices para que el usuario elija (base 1)
+    const listado = ciudades.map((c, i) => `${i + 1}. ${c} (${c.length})`).join("\n");
+    const indiceElegidoInput = prompt(`Ciudades:\n${listado}\n\nIngrese el número (1-${ciudades.length}) de la ciudad que desea comparar:`);
+    const indiceElegido = parseInt(indiceElegidoInput, 10);
+
+    if (isNaN(indiceElegido) || indiceElegido < 1 || indiceElegido > ciudades.length) {
+        alert("ERROR: El número de ciudad ingresado no es válido.");
+        return;
+    }
+
+    const ciudadElegida = ciudades[indiceElegido - 1];
+    const longitudElegida = ciudadElegida.length;
+
+    let mensajeFinal;
+    if (longitudElegida > longitudMaxima) {
+        mensajeFinal = `'${ciudadElegida}' ES MÁS LARGA que '${ciudadMasLarga}'.`;
+    } else if (longitudElegida < longitudMaxima) {
+        mensajeFinal = `'${ciudadElegida}' ES MÁS CORTA que '${ciudadMasLarga}'.`;
+    } else {
+        mensajeFinal = `'${ciudadElegida}' TIENE LA MISMA LONGITUD que '${ciudadMasLarga}'.`;
+    }
+
+    console.log("--- Comparación Final ---");
+    console.log(`Ciudad más larga encontrada: '${ciudadMasLarga}' (${longitudMaxima} letras)`);
+    console.log(`Usted eligió: ${ciudadElegida} (${longitudElegida} letras)`);
+    console.log(mensajeFinal);
+    alert(mensajeFinal);
+}
+
+ciudadMasLargaSinCiclo();
+
+
+
+//PSEINT
+//5.-OBTENER INICIALES DE VARIOS CARGOS PROFECIONALES
+//Algoritmo InicialesDeCargosConSeleccion
+//    Definir n, i, j, indiceElegido Como Entero
+//    Definir cargos Como Caracter // Arreglo de cargos
+//    Definir cargoActual, iniciales, caracter, cargoElegido Como Caracter
+    
+    // 1. Solicitar el número N de cargos
+//    Escribir ">> Ingrese el número de cargos a procesar (N):"
+//    Leer n
+    
+//    Si n > 0 Entonces
+        // 2. Dimensionar el arreglo
+//        Dimension cargos[n]
+        
+//        Escribir "--- INGRESO DE CARGOS ---"
+        
+        // 3. Bucle para ingresar N cargos y guardarlos en el arreglo
+//        Para i <- 1 Hasta n Con Paso 1 Hacer
+//            Escribir "Ingrese el nombre del cargo #", i, ":"
+//            Leer cargoActual
+//            cargos[i] <- cargoActual // Guardar en el arreglo
+//        FinPara
+        
+//        Escribir "--- PROCESAMIENTO ---"
+        
+        // 4. Seleccionar un cargo del arreglo por índice (1 a N)
+//        Escribir ""
+//        Escribir "Ingrese el número (índice) del cargo para obtener sus iniciales (1 a ", n, "):"
+//       Leer indiceElegido
+        
+        // 5. Validar el índice y procesar el cargo elegido
+//        Si indiceElegido >= 1 Y indiceElegido <= n Entonces
+//            cargoElegido <- cargos[indiceElegido]
+//            iniciales <- ""
+            
+            // Procesamiento de las iniciales manual:
+            // Aseguramos que el primer caracter sea la primera inicial
+ //           j <- 1
+            // Tomamos el primer caracter
+//            caracter <- SubCadena(cargoElegido, 1, 1)
+//            iniciales <- iniciales + Mayusculas(caracter) + "."
+            
+            // Bucle para buscar el resto de iniciales (después de cada espacio)
+//            Mientras SubCadena(cargoElegido, j, j) <> "" Hacer
+//                Si SubCadena(cargoElegido, j, j) = " " Entonces
+                    // Si el caracter actual es un espacio, el siguiente es la inicial
+//                    j <- j + 1
+//                    caracter <- SubCadena(cargoElegido, j, j)
+//                    iniciales <- iniciales + Mayusculas(caracter) + "."
+//                FinSi
+//                j <- j + 1
+//            FinMientras
+            
+            // Salida
+//            Escribir "--- RESULTADO FINAL ---"
+//            Escribir "Cargo elegido: ", cargoElegido
+//            Escribir "Iniciales: ", iniciales
+//        SiNo
+//            Escribir "ERROR: El número de cargo ingresado no es válido."
+//        FinSi
+        
+//    SiNo
+//        Escribir "Debe ingresar un número mayor a cero."
+//    FinSi
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//5.-OBTENER INICIALES DE VARIOS CARGOS PROFECIONALES
+function obtenerInicialesConSeleccionSinCiclo() {
+    // 1. Solicitar TODOS los cargos en una sola línea, separados por comas
+    const cargosInput = prompt("Ingrese TODOS los cargos profesionales, separados por comas (ej: Director General, Vice Presidente, Gerente de Ventas):");
+
+    if (!cargosInput || cargosInput.trim() === "") {
+        console.log("No se ingresó ningún cargo.");
+        alert("No se ingresó ningún cargo.");
+        return;
+    }
+
+    // Convertir la cadena de texto a un arreglo de cargos, eliminando espacios extra
+    const cargos = cargosInput
+        .split(',') // Divide la cadena por la coma
+        .map(cargo => cargo.trim()) // Elimina espacios en blanco al inicio/final de cada cargo
+        .filter(cargo => cargo.length > 0); // Elimina entradas vacías si el usuario puso comas extra
+
+    
+    const nCargosReales = cargos.length;
+    
+    if (nCargosReales === 0) {
+        console.log("No se ingresó ningún cargo válido.");
+        alert("No se ingresó ningún cargo válido.");
+        return;
+    }
+
+    // 2. Mostrar la lista de cargos ingresados
+    console.log(`Cargos detectados: ${nCargosReales}`);
+    cargos.forEach((cargo, index) => {
+        console.log(`[${index + 1}] ${cargo}`);
+    });
+    
+    // 3. Seleccionar un cargo del arreglo por índice (base 1)
+    const indiceElegidoInput = prompt(`Ingrese el número (índice) del cargo para obtener sus iniciales (1 a ${nCargosReales}):`);
+    const indiceElegido = parseInt(indiceElegidoInput);
+
+    // 4. Validar índice y obtener el cargo
+    if (isNaN(indiceElegido) || indiceElegido < 1 || indiceElegido > nCargosReales) {
+        console.log("ERROR: El número de cargo ingresado no es válido.");
+        alert("ERROR: El número de cargo ingresado no es válido.");
+        return;
+    }
+
+    // El índice del arreglo (base 0) es (índice elegido - 1)
+    const cargoElegido = cargos[indiceElegido - 1]; 
+    
+    // 5. Procesar las iniciales (función que no usa ciclos explícitos)
+    const iniciales = cargoElegido
+        .split(' ') // Divide la cadena por espacios para obtener las palabras
+        .map(palabra => palabra.charAt(0).toUpperCase()) // Usa map() en lugar de un ciclo for
+        .join('.'); // Une las letras con un punto
+    
+    // 6. Salida
+    console.log("--- RESULTADO FINAL ---");
+    console.log(`Cargo elegido: ${cargoElegido}`);
+    console.log(`Iniciales: ${iniciales}.`); 
+    alert(`Iniciales de '${cargoElegido}': ${iniciales}.`);
+}
+
+obtenerInicialesConSeleccionSinCiclo();
