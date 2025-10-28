@@ -1,0 +1,328 @@
+//PSEINT
+//1.-CONTAR CARACTERES DE UNA FRACE PUBLICITARIA
+//Funcion mensaje <- ContarCaracteres(frase)
+//   Definir caracter, mensaje Como Cadena
+//    Definir contador, i, largo Como Entero
+//    // Convertimos la frase a minúsculas (solo para uniformar)
+//    frase <- Minusculas(frase)
+//    contador <- 0
+//    largo <- Longitud(frase)
+//    Para i <- 1 Hasta largo Hacer
+//        caracter <- Subcadena(frase, i, 1)
+//       Si caracter <> " " Entonces
+//            contador <- contador + 1
+//        FinSi
+//    FinPara
+//    mensaje <- "Tu frase tiene " + ConvertirATexto(contador) + " caracteres (sin contar los espacios). ¡Buen trabajo!"
+//FinFuncioN
+//Algoritmo Principal
+//    Definir frase, resultado Como Cadena
+	
+//    Escribir "ingrese la palabra que usted guste para contar cuantos caracteres tiene"
+//    Leer frase
+	
+//    resultado <- ContarCaracteres(frase)
+	
+//    Escribir ""
+//    Escribir resultado
+//    Escribir "Gracias por usar el contador de caracteres. ??"
+//FinAlgoritmo
+
+//JAVASCRIPT
+//1.-CONTAR CARACTERES DE UNA FRACE PUBLICITARIA
+function contarCaracteres(frase) {
+  //todo a minúsculas (solo para formato)
+  frase = frase.toLowerCase();
+
+  // Quitar todos los espacios
+  let sinEspacios = frase.replace(/\s+/g, "");
+
+  // Contar caracteres correctamente (tildes, emojis, etc.)
+  let contador = [...sinEspacios].length;
+
+  // Crear un mensaje 
+  let mensaje = `Tu frase tiene ${contador} caracteres (sin contar los espacios). ¡Buen trabajo!`;
+
+  return mensaje;
+}
+
+//principal
+let frase = prompt("👋 Hola, ingrese la frace publicitaria para contar sus caracteres:");
+
+if (frase === null || frase.trim() === "") {
+  alert("No escribiste nada. Intenta de nuevo la próxima vez.");
+} else {
+  let resultado = contarCaracteres(frase);
+
+  alert(resultado);
+  console.log(resultado);
+
+  alert("Gracias por usar el contador de caracteres. 🚀");
+}
+
+//PSEINT
+//2.-CONTAR APARICIONES DE UNA VOCAL EN UN TÍTULO
+//Algoritmo ContarVocalDefinitivo
+//    Definir tituloIngresado Como Caracter
+//    Definir vocalIngresada Como Caracter
+//    Definir contador Como Entero
+//    Definir i Como Entero
+//    Definir caracterActual Como Caracter
+//    Definir tituloMinusculas Como Caracter
+//    Definir vocalMinuscula Como Caracter
+    
+//    contador <- 0
+//    Escribir "Ingrese el título:"
+//    Leer tituloIngresado
+    
+    // Bucle para solicitar y validar la vocal
+//    Repetir
+//        Escribir "Ingrese la vocal que desea contar (a, e, i, o, u):"
+//        Leer vocalIngresada
+        
+        // La condición de error verificará si no es una vocal simple
+//        Si Longitud(vocalIngresada) <> 1 O No(Minusculas(vocalIngresada) = "a" O Minusculas(vocalIngresada) = "e" O Minusculas(vocalIngresada) = "i" O Minusculas(vocalIngresada) = "o" O Minusculas(vocalIngresada) = "u") Entonces
+//            Escribir "Error: debe ingresar solo una vocal válida."
+ //       FinSi
+        
+//    Hasta Que Longitud(vocalIngresada) = 1 Y (Minusculas(vocalIngresada) = "a" O Minusculas(vocalIngresada) = "e" O Minusculas(vocalIngresada) = "i" O Minusculas(vocalIngresada) = "o" O Minusculas(vocalIngresada) = "u")
+    
+    // Normalizar a minúsculas
+//    tituloMinusculas <- Minusculas(tituloIngresado)
+//    vocalMinuscula <- Minusculas(vocalIngresada)
+    
+    // Bucle principal para el conteo
+//    Para i <- 1 Hasta Longitud(tituloMinusculas) Con Paso 1 Hacer
+//        caracterActual <- SubCadena(tituloMinusculas, i, i)
+//        Si caracterActual = vocalMinuscula Entonces
+//            contador <- contador + 1
+//        FinSi
+//    FinPara
+    
+    // Línea de salida CORRECTA
+//    Escribir "La vocal ' vocalIngresada, ", aparece ", contador, " veces en el título."
+//FinAlgoritmo
+
+//JAVASCRIPT
+//2.-CONTAR APARICIONES DE UNA VOCAL EN UN TITULO
+function contarVocalSinCiclo() {
+    // 1. Entrada de Título y Validación
+    let titulo = prompt("Ingrese el título:");
+
+    if (titulo === null || titulo.trim() === "") {
+        alert("No ingresó ningún título");
+        return;
+    }
+
+    // 2. Obtener la vocal (Mantenemos la validación de la vocal usando un ciclo simple
+    // o un reintento, pero la lógica de conteo NO usará un ciclo 'for').
+    let vocal = prompt("Ingrese la vocal que desea contar (a,e,i,o,u):");
+    
+    // Convertir a minúscula y tomar solo la primera letra
+    vocal = (vocal || "").toLowerCase().charAt(0);
+
+    // Validación de la vocal ingresada
+    if (!'aeiou'.includes(vocal)) {
+        alert("Vocal inválida. Ingrese una única vocal (a, e, i, o, u).");
+        return;
+    }
+
+    // Convertir el título a minúsculas
+    titulo = titulo.toLowerCase();
+    
+    // 3. Conteo sin ciclo 'for' - Usando Expresiones Regulares (Regex)
+    
+    // Creamos la expresión regular para buscar la vocal globalmente ('g')
+    // Necesitamos escapar caracteres si la vocal fuera especial, pero aquí solo son a,e,i,o,u.
+    const regex = new RegExp(vocal, 'g'); 
+    
+    // Usamos el método match(): 
+    // - Si encuentra coincidencias, devuelve un array.
+    // - Si no encuentra nada, devuelve null.
+    const coincidencias = titulo.match(regex);
+    
+    // El contador es la longitud del array de coincidencias (o 0 si es null)
+    const contador = coincidencias ? coincidencias.length : 0;
+    
+    // 4. Salida
+    const resultado = "La vocal '" + vocal + "' aparece " + contador + " veces en el título";
+    alert(resultado);
+    console.log(resultado);
+}
+
+contarVocalSinCiclo();
+
+
+
+//PSEINT
+//3.-INVERTIR UN NOMBRE DE PRODUCTO
+//Algoritmo InvertirNombre
+//    Definir nombreProducto Como Caracter
+//    Definir nombreInvertido Como Caracter
+//    Definir i Como Entero
+//   Definir longitudProducto Como Entero // Corregido: Evita conflicto con la función Longitud()
+    
+    // Prompt de entrada
+//    Escribir "Ingrese el nombre del producto (ej: Laptop):"
+//    Leer nombreProducto
+    
+//    longitudProducto <- Longitud(nombreProducto)
+//    nombreInvertido <- ""
+    
+    // Recorre la cadena desde el último carácter (longitudProducto) hasta el primero (1)
+//    Para i <- longitudProducto Hasta 1 Con Paso -1 Hacer
+        // Agrega el carácter actual (posición i) al inicio de la nueva cadena
+  //      nombreInvertido <- nombreInvertido + SubCadena(nombreProducto, i, i)
+//    FinPara
+    
+//    Escribir "Nombre invertido: ", nombreInvertido
+//FinAlgoritmo
+
+
+//JAVASCRIPT
+//3.-INVERTIR UN NOMBRE DE PRODUCTO
+function invertirNombreSinCiclo() {
+    // 1. Prompt de entrada
+    const nombreProducto = prompt("Ingrese el nombre del producto (ej: Laptop):");
+    
+    // Validación básica
+    if (!nombreProducto || nombreProducto.trim() === "") {
+        alert("No ingresó un nombre válido.");
+        return;
+    }
+    
+    // 2. Inversión Sin Ciclo
+    // El proceso se realiza en una sola línea encadenando tres métodos:
+    const nombreInvertido = nombreProducto
+        .split('')   // 1. Divide la cadena en un array de caracteres: ["L", "a", "p", "t", "o", "p"]
+        .reverse()   // 2. Invierte el orden de los elementos del array: ["p", "o", "t", "p", "a", "L"]
+        .join('');   // 3. Une los elementos del array de nuevo en una cadena: "potpaL"
+    
+    // 3. Salida
+    const resultado = `Nombre original: ${nombreProducto}\nNombre invertido: ${nombreInvertido}`;
+    console.log(resultado);
+    alert(`Nombre invertido: ${nombreInvertido}`);
+}
+
+invertirNombreSinCiclo();
+
+
+
+//PSEINT
+//4.-COMPARAR NOMBRES DE CIUDADES POR LONGITUD
+//Algoritmo CompararCiudades
+//    Definir ciudad1, ciudad2, mensaje Como Caracter
+//    Definir longitud1, longitud2 Como Entero
+//    
+//    Escribir "Ingrese el nombre de la primera ciudad (ej: Milagro):"
+//    Leer ciudad1
+    
+//    Escribir "Ingrese el nombre de la segunda ciudad (ej: Guayaquil):"
+//    Leer ciudad2
+    
+//    longitud1 <- Longitud(ciudad1)
+//    longitud2 <- Longitud(ciudad2)
+    
+    // Lógica de comparación
+//    Si longitud1 > longitud2 Entonces
+        // CORRECCIÓN: Asignación simple, se usa la coma en ESCRIBIR
+//        Escribir "La palabra ', ciudad1, ' tiene más letras."
+//    SiNo
+//        Si longitud2 > longitud1 Entonces
+            // CORRECCIÓN: Asignación simple, se usa la coma en ESCRIBIR
+//            Escribir "La palabra ', ciudad2, ' tiene más letras."
+//        SiNo
+//            Escribir "Las palabras tienen la misma cantidad de letras."
+//        FinSi
+//    FinSi
+//    FINAL Algoritmo
+
+//JAVASCRIPT
+//4.-COMPARAR NOMBRES DE CIUDADES POR LONGITUD
+function compararCiudades() {
+    // Prompt para la primera ciudad
+    const ciudad1 = prompt("Ingrese el nombre de la primera ciudad (ej: Milagro):");
+    // Prompt para la segunda ciudad
+    const ciudad2 = prompt("Ingrese el nombre de la segunda ciudad (ej: Guayaquil):");
+    
+    const longitud1 = ciudad1.length;
+    const longitud2 = ciudad2.length;
+    let mensaje = "";
+    
+    // Lógica de comparación
+    if (longitud1 > longitud2) {
+        mensaje = `La palabra '${ciudad1}' tiene más letras.`;
+    } else if (longitud2 > longitud1) {
+        mensaje = `La palabra '${ciudad2}' tiene más letras.`;
+    } else {
+        mensaje = "Las palabras tienen la misma cantidad de letras.";
+    }
+    
+    // Salida
+    console.log(mensaje);
+    alert(mensaje);
+}
+
+compararCiudades();
+
+
+//PSEINT
+//5.-OBTENER INICIALES DE UN CARGO PROFECIONAL
+//Algoritmo ObtenerIniciales
+//    Definir cargo, iniciales Como Caracter
+//    Definir i Como Entero
+    
+    // Prompt de entrada
+//    Escribir "Ingrese el cargo profesional (ej: Director General Académico):"
+//    Leer cargo
+    
+//    iniciales <- ""
+    
+    // 1. Obtiene la primera inicial y el punto
+//    Si Longitud(cargo) > 0 Entonces
+//        iniciales <- SubCadena(cargo, 1, 1) + "."
+//    FinSi
+    
+    // 2. Recorre el resto de la cadena buscando espacios
+//    Para i <- 2 Hasta Longitud(cargo) Con Paso 1 Hacer
+        // Si encuentra un espacio y hay una letra después
+//        Si SubCadena(cargo, i, i) = " " Y i + 1 <= Longitud(cargo) Entonces
+            // Agrega la siguiente letra y un punto
+//            iniciales <- iniciales + SubCadena(cargo, i + 1, i + 1) + "."
+//        FinSi
+//    FinPara
+    
+    // Muestra el resultado en mayúsculas
+//    Escribir "Iniciales: ", Mayusculas(iniciales)
+//FinAlgoritmo
+
+//JAVASCRIPT
+//5.-OBTENER INICIALES DE UN CARGO PROFECIONAL
+function obtenerIniciales() {
+    // Prompt de entrada
+    const cargo = prompt("Ingrese el cargo profesional (ej: Director General Académico):");
+    
+    // Validación simple
+    if (!cargo || cargo.trim().length === 0) {
+        console.log("Entrada inválida.");
+        alert("Entrada inválida.");
+        return;
+    }
+    
+    // Lógica moderna de obtención de iniciales:
+    // 1. split(' '): Divide la cadena por cada espacio
+    // 2. map(palabra => palabra.charAt(0)): Toma el primer carácter de cada palabra.
+    // 3. join('.'): Une las letras con un punto entre ellas.
+    // 4. toUpperCase(): Convierte todo a mayúsculas.
+    // Se añade un punto final al final para coincidir con el formato D.G.A.
+    const iniciales = cargo.split(' ')
+                            .map(palabra => palabra.charAt(0))
+                            .join('.')
+                            .toUpperCase() + '.';
+                            
+    // Salida
+    console.log(`Iniciales: ${iniciales}`);
+    alert(`Iniciales: ${iniciales}`);
+}
+
+obtenerIniciales();
